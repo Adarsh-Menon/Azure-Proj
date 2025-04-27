@@ -24,3 +24,14 @@ if prompt := st.chat_input("What's up?"):
     
     # Rerun to show the updated messages immediately
     st.rerun()
+
+from streamlit.web import cli as stcli
+from streamlit import runtime
+import sys
+
+if __name__ == '__main__':
+    if runtime.exists():
+        main()
+    else:
+        sys.argv = ["streamlit", "run", sys.argv[0]]
+        sys.exit(stcli.main())
